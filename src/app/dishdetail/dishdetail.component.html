@@ -1,0 +1,51 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutAlign.gt-md="space-around center"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+  <div fxFlex="40">
+    <!--<p>Display the details of the Dish here</p>-->
+    <div fxFlex *ngIf="dish">
+      <md-card>
+        <md-card-header>
+          <md-card-title>
+            <h3>{{ dish.name | uppercase }}</h3>
+          </md-card-title>
+        </md-card-header>
+        <img md-card-image src="{{ dish.image }}" alt="{{ dish.name }}">
+        <md-card-content>
+          <p>{{ dish.description }}</p>
+        </md-card-content>
+        <md-card-actions>
+          <button md-button>Like</button>
+          <button md-button>Share</button>
+        </md-card-actions>
+      </md-card>
+    </div>
+  </div>
+
+  <div fxFlex="40">
+    <!--<p>Display the list of comments here</p>-->
+    <div fxFlex *ngIf="dish">
+      <md-card>
+        <md-card-header>
+          <md-card-title>
+            <h3>{{ "Comments" | uppercase }}</h3>
+          </md-card-title>
+        </md-card-header>
+        <md-list>
+          <md-list-item *ngFor="let list of dish.comments">
+            <h3 md-line> {{list.comment}} </h3>
+            <p md-line> {{list.rating}} </p>
+            <p md-line> {{list.author}} </p>
+            <p md-line> {{list.date | date}} </p>
+          </md-list-item>
+        </md-list>
+      </md-card>
+    </div>
+  </div>
+
+</div>
