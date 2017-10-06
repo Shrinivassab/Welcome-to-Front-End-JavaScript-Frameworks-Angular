@@ -6,9 +6,9 @@
      fxLayoutGap="10px"
      fxLayoutGap.xs="0">
 
-  <div fxFlex="40">
+  <div fxFlex="40" *ngIf="dish">
     <!--<p>Display the details of the Dish here</p>-->
-    <div fxFlex *ngIf="dish">
+    <div fxFlex>
       <md-card>
         <md-card-header>
           <md-card-title>
@@ -20,9 +20,16 @@
           <p>{{ dish.description }}</p>
         </md-card-content>
         <md-card-actions>
+          <button md-button [routerLink]="['/dishdetail', prev]">
+            <span class="fa fa-chevron-left"></span>
+          </button>
           <button md-button (click)="goBack()">Back</button>
           <button md-button>Like</button>
           <button md-button>Share</button>
+          <span class="flex-spacer"></span>
+          <button md-button [routerLink]="['/dishdetail', next]">
+            <span class="fa fa-chevron-right"></span>
+          </button>
         </md-card-actions>
       </md-card>
     </div>
@@ -31,9 +38,9 @@
     </div>
   </div>
 
-  <div fxFlex="40">
+  <div fxFlex="40" *ngIf="dish">
     <!--<p>Display the list of comments here</p>-->
-    <div fxFlex *ngIf="dish">
+    <div fxFlex>
       <md-card>
         <md-card-header>
           <md-card-title>
