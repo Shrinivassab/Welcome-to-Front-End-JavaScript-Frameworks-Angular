@@ -22,7 +22,10 @@ export class DishService {
 
   getDishes(): Observable<Dish[]> {
     return this.http.get(baseURL + 'dishes')
-      .map(res => this.processHTTPMsgService.extractData(res));
+      .map(res => this.processHTTPMsgService.extractData(res))
+      .catch(error => {
+        return this.processHTTPMsgService.handleError(error);
+      });
   }
 
 
@@ -38,6 +41,9 @@ export class DishService {
     return this.http.get(baseURL + 'dishes/' + id)
       .map(res => {
         return this.processHTTPMsgService.extractData(res);
+      })
+      .catch(error => {
+        return this.processHTTPMsgService.handleError(error);
       });
   }
 
@@ -50,7 +56,10 @@ export class DishService {
 
   getFeaturedDish(): Observable<Dish> {
     return this.http.get(baseURL + 'dishes?featured=true')
-      .map(res => this.processHTTPMsgService.extractData(res)[0]);
+      .map(res => this.processHTTPMsgService.extractData(res)[0])
+      .catch(error => {
+        return this.processHTTPMsgService.handleError(error);
+      });
   }
 
 /*  getFeaturedDish(): Observable<Dish> {
@@ -62,7 +71,10 @@ export class DishService {
 
   getDishIds(): Observable<number[]> {
     return this.getDishes()
-      .map(dishes => dishes.map(dish => dish.id));
+      .map(dishes => dishes.map(dish => dish.id))
+      .catch(error => {
+        return error;
+      });
   }
 
 
