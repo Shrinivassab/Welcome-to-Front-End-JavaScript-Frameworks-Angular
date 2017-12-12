@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
   // selectedDish: Dish;
 
   constructor(private dishService: DishService,
-              @Inject('BaseURL') private BaseURL) { }
+              @Inject('BaseURL') public BaseURL) { }
 
   /*When ever this component executed this ngOnInit will get executed*/
   ngOnInit() {

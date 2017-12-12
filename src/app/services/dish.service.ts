@@ -20,45 +20,25 @@ export class DishService {
 
   getDishes(): Observable<Dish[]> {
     return this.http.get(baseURL + 'dishes')
-      .map(res => {
-        return this.processHTTPMsgService.extractData(res);
-      });
-    // return Observable.of(DISHES).delay(2000);
-    // return new Promise(resolve => {
-    //   // Simulate server latency with 2 sec delay
-    //   setTimeout(() => resolve(DISHES), 2000);
-    // });
+      .map(res => this.processHTTPMsgService.extractData(res))
+      .catch(error => this.processHTTPMsgService.handleError(error));
   }
 
   getDish(id: number): Observable<Dish> {
-    return this.http.get(baseURL + 'dishes/' + id)
-      .map(res => {
-        return this.processHTTPMsgService.extractData(res);
-      });
-    // return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
-    // return new Promise(resolve => {
-    //   setTimeout(() => resolve(DISHES.filter((dish) => (dish.id === id))[0]), 2000);
-    // });
+    return  this.http.get(baseURL + 'dishes/' + id)
+      .map(res => this.processHTTPMsgService.extractData(res))
+      .catch(error => this.processHTTPMsgService.handleError(error));
   }
 
   getFeaturedDish(): Observable<Dish> {
     return this.http.get(baseURL + 'dishes?featured=true')
-      .map(res => {
-        return this.processHTTPMsgService.extractData(res)[0];
-      });
-    // return Observable.of(DISHES.filter((dish) => dish.featured)[0]).delay(2000);
-    // return new Promise(resolve => {
-    //   setTimeout(() => resolve(DISHES.filter((dish) => dish.featured)[0]), 2000);
-    // });
+      .map(res => this.processHTTPMsgService.extractData(res)[0])
+      .catch(error => this.processHTTPMsgService.handleError(error));
   }
 
   getDishIds(): Observable<number[]> {
     return this.getDishes()
-      .map(dishes => {
-        return dishes.map(dish => dish.id );
-      });
-    // return Observable.of(DISHES.map(dish => dish.id));
+      .map(dishes => dishes.map(dish => dish.id))
+      .catch(error => error );
   }
-
-
 }

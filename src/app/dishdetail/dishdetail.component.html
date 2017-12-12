@@ -91,7 +91,7 @@
       </md-card>
       {{ additionalCommentForm.value | json }}
     </div>
-    <div [hidden]="dish">
+    <div [hidden]="dish || errMess">
       <md-spinner></md-spinner><h4>Loading ... Please Wait</h4>
     </div>
     <div *ngIf="errMess">

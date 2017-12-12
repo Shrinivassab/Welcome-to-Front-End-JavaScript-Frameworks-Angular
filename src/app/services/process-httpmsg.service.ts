@@ -26,7 +26,7 @@ export class ProcessHTTPMsgService {
 
   public extractData(res: Response) { // Response as a paramenter
     const body = res.json();
-
+    console.log(body);
     return body || {}; // If the body is null retutn empty array
   }
 
