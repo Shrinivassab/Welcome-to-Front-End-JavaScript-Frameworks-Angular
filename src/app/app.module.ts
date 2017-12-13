@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { HttpModule } from '@angular/http';
+import { RestangularModule } from 'ngx-restangular';
+import { RestangularConfigFactory } from './shared/restconfig';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { HttpModule } from '@angular/http';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [ DishService, PromotionService, LeaderService,
     { provide: 'BaseURL', useValue: baseURL },
